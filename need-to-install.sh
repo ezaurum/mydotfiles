@@ -1,5 +1,7 @@
 #! /bin/zsh
 
+cp -r .X* .xinit .gitconfig .alias .config ~/
+
 curl -O https://bootstrap.pypa.io/get-pip.py &&
 python get-pip.py --user &&
 rm get-pip.py &&
