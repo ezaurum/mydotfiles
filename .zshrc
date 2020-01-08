@@ -71,13 +71,10 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-if [[ -f $HOME/.zsh_startx ]]; then
-	source $HOME/.zsh_startx
-fi
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -101,3 +98,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source /usr/share/autoenv-git/activate.sh
+source ~/.alias
+
+# start x
+source $HOME/.zsh_startx
