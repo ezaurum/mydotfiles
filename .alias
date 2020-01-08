@@ -2,3 +2,7 @@ alias sps="sudo pacman -S"
 alias spu="sudo pacman -Syu"
 alias pss="pacman -Ss"
 alias pq="pacman -Q"
+
+#tmux
+alias tl="tmux ls"
+alias ta="tmux attach-session -t"
