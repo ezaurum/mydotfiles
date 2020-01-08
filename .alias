@@ -1,0 +1,4 @@
+alias sps="sudo pacman -S"
+alias spu="sudo pacman -Syu"
+alias pss="pacman -Ss"
+alias pq="pacman -Q"
