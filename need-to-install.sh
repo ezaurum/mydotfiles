@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-cp -r .X* .xinit .gitconfig .alias .config ~/
+exec pull-init-script.sh
 
 curl -O https://bootstrap.pypa.io/get-pip.py &&
 python get-pip.py --user &&
