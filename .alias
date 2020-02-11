@@ -11,3 +11,4 @@ alias fz="cp ~/.zshrc ~/.alias ~/mydotfiles && pushd ~/mydotfiles && gca -m \"Up
 alias ts="tmuxinator start"
 alias tn="tmuxinator new"
 alias tcp="tmuxinator copy"
+alias xx="xclip -o | xclip -sel clipboard"
