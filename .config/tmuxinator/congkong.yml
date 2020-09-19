@@ -46,23 +46,11 @@ windows:
   - server:
      root: ~/congkong/server
      panes:
+       - docker-compose -f deployments/docker-compose.yml up -d; modd
        - gl
-       - modd
-  - admin:
+  - front:
      root: ~/congkong/admin
      panes:
-       - gl
-       - yarn serve
-  - front:
-     root: ~/congkong/front
-     panes:
-       - gl
-       - yarn serve
-  - api:
-     root: ~/congkong/api
-     panes:
-       - gl
-       - yarn serve
-  - infra:
-     root: ~/congkong/infra
+       - yarn lad
+       - yarn lat
        - gl
