@@ -1,0 +1,9 @@
+[Unit]
+Description=Rotate wallpaper
+Wants=rotate-wallpaper.timer
+
+[Service]
+ExecStart=/home/ezaurum/.fehbg
+
+[Install]
+WantedBy=multi-user.target

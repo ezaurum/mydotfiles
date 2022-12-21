@@ -1,5 +1,6 @@
-xterm*faceName: D2Coding
+xterm*faceName: Source Code Pro
 xterm*faceSize: 14
+!urxvt.letterSpace:  -8
 
 xterm*foreground     : #dcdccc
 xterm*background     : #1f1f1f
@@ -55,4 +56,6 @@ xterm*visualBell:         on
 ! *.color20:      base04
 ! *.color21:      base06
 !
+
+Xft.dpi: 140
 

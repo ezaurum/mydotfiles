@@ -1,0 +1,22 @@
+---
+engine:
+  global_hotkeys:
+    AltR:
+      behavior: Ignore
+      result: Bypass
+    Super-Space:
+      behavior: Ignore
+      result: Bypass
+    S-Space:
+      behavior:
+        Toggle:
+          - Hangul
+          - Latin
+      result: Consume
+  hangul:
+    layout: sebeolsik-3sin-p2
+    addons:
+      all:
+        - ComposeChoseongSsang
+        - ComposeJungseongSsang
+        - ComposeJongseongSsang

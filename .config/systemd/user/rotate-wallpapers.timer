@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotate wallpaer by 5m
+
+[Timer]
+OnCalendar=*-*-* *:00/5:00
+Persistent=true
+Unit=rotate-wallpapers.service
+
+[Install]
+WantedBy=timers.target

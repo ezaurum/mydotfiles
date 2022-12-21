@@ -1,6 +1,6 @@
-# /home/ezaurum/.config/tmuxinator/congkong.yml
+# /home/ezaurum/.config/tmuxinator/ssuwat.yml
 
-name: congkong
+name: ssuwat
 root: ~/
 
 # Optional tmux socket
@@ -39,24 +39,12 @@ root: ~/
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
-name: congkong
-root: ~/congkong
+name: ssuwat
+root: ~/ssuwat
 
 windows:
   - server:
-     root: ~/congkong/server
+     root: ~/ssuwat/api
      panes:
        - gl
-       - ./run.sh
-  - front:
-     root: ~/congkong/admin
-     panes:
-       - gl
-       - nvm use && yarn serve
-  - v3:
-     root: ~/congkong/congkong-admin-v3
-     panes:
-       - gl
-       - nvm use && yarn dev:participant
-       - nvm use && yarn storybook
-       - nvm use && yarn dev:admin
+       - modd
