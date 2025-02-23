@@ -9,7 +9,7 @@ export ZSH="/home/ezaurum/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="random"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -105,11 +105,32 @@ source ~/.alias
 # Time lost...
 # $HOME/updateddns.sh
 
+export TERMINAL=alacritty
+
+# pnpm
+export PNPM_HOME="/home/ezaurum/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# add Pulumi to the PATH
+export PATH=$PATH:/home/ezaurum/.pulumi/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ezaurum/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ezaurum/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ezaurum/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ezaurum/google-cloud-sdk/completion.zsh.inc'; fi
+
+# mise
+eval "$(~/.local/bin/mise activate zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# deno
+. "/home/ezaurum/.deno/env"
+
 # start x
 source $HOME/.zsh_startx
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
