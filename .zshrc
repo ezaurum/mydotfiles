@@ -105,7 +105,7 @@ source ~/.alias
 # Time lost...
 # $HOME/updateddns.sh
 
-export TERMINAL=alacritty
+export TERMINAL=wezterm
 
 # pnpm
 export PNPM_HOME="/home/ezaurum/.local/share/pnpm"
@@ -134,3 +134,4 @@ eval "$(zoxide init zsh)"
 
 # start x
 source $HOME/.zsh_startx
+alias claude="/home/ezaurum/.claude/local/claude"

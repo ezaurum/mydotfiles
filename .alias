@@ -12,3 +12,29 @@ alias ts="tmuxinator start"
 alias tn="tmuxinator new"
 alias tcp="tmuxinator copy"
 alias yy="xclip -o | xclip -sel clipboard"
+
+#terraform
+alias tf="terraform"
+alias tfi="terraform init"
+alias tfp="terraform plan -out plan.tfout"
+alias tfa="terraform apply plan.tfout && rm plan.tfout"
+
+#vim
+alias vi="nvim"
+alias vim="nvim"
+
+#docker
+alias d="docker"
+alias dc="docker compose"
+alias dcb="docker compose build"
+alias dcd="docker compose down"
+alias dce="docker compose exec"
+alias dcl="docker compose logs"
+alias dcp="docker compose ps"
+alias dcr="docker compose run"
+alias dcs="docker compose start"
+alias dcu="docker compose up"
+
+alias gt="go-task"
+
+alias cl="claude"
