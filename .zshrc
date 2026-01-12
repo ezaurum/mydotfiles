@@ -218,8 +218,3 @@ export FZF_DEFAULT_OPTS="
 
 # starship 설정
 eval "$(starship init zsh)"
-
-# User configuration
-if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	exec startx
-fi
