@@ -148,17 +148,64 @@ setopt EXTENDED_HISTORY # Add timestamp
 # --- History 설정 끝 ---
 alias history='fc -ld'
 
-# --- History Substring Search 설정 ---
+# =======================================================
+# [Zsh Key Bindings & Vi Mode 통합 설정]
+# =======================================================
 
-# 1. 플러그인 로드 (Arch Linux 설치 경로)
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# 1. Vi 모드 활성화 및 딜레이 제거
+bindkey -v
+export KEYTIMEOUT=1
 
-# 2. 키 바인딩 (위/아래 화살표를 이 플러그인에 연결)
-# 터미널마다 키 코드가 다를 수 있어 두 가지 방식 모두 등록합니다.
+# 2. Arch Linux 플러그인 & FZF 로드 (설치 경로 확인 필수)
+# (경로가 없으면 에러가 날 수 있으니 설치 여부 확인 필요)
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ] && source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# 방식 A: 표준 터미널 키 코드
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# =======================================================
+# [키 매핑] - Vi 입력 모드(viins)에서도 작동하도록 설정
+# =======================================================
+
+# --- A. 삭제 키 (Backspace & Delete) ---
+# 백스페이스: 커서 앞 글자 삭제
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+# Delete 키: 커서 뒤 글자 삭제 (대문자 변환 문제 해결)
+bindkey -M viins '^[[3~' delete-char
+bindkey -M vicmd '^[[3~' delete-char
+
+# --- B. 커서 이동 (Ctrl + 화살표, Home, End) ---
+# Ctrl + 오른쪽 화살표: 단어 단위 앞으로
+bindkey -M viins '^[[1;5C' forward-word
+bindkey -M vicmd '^[[1;5C' forward-word
+# Ctrl + 왼쪽 화살표: 단어 단위 뒤로
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M vicmd '^[[1;5D' backward-word
+
+# Home / End 키 (줄의 시작과 끝으로)
+bindkey -M viins '^[[H' beginning-of-line
+bindkey -M viins '^[[F' end-of-line
+bindkey -M vicmd '^[[H' beginning-of-line
+bindkey -M vicmd '^[[F' end-of-line
+
+# --- C. 히스토리 검색 (화살표 위/아래) ---
+# 명령어 일부 입력 후 위/아래 키 누르면 해당 명령어로 시작하는 기록 검색
+# (zsh-history-substring-search 플러그인 필요)
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# --- D. FZF 검색 (Ctrl + R, Ctrl + T) ---
+# FZF 스크립트가 로드되면 보통 자동 설정되지만, 확실하게 하기 위해 명시
+bindkey -M viins '^R' fzf-history-widget
+bindkey -M viins '^T' fzf-file-widget
+
+# --- E. 고급 기능 (Edit Command Line) ---
+# Normal 모드에서 'v' 누르면 현재 명령어를 Vim 에디터에서 편집
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
 
 # fzf 기본 옵션 설정 (레이아웃 + 미리보기 창)
 export FZF_DEFAULT_OPTS="
@@ -169,40 +216,7 @@ export FZF_DEFAULT_OPTS="
 --preview-window='right:60%:wrap'
 "
 
-# Arch Linux FZF 설정 (경로 필수 확인)
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
-
-# --- Vi Mode 설정 시작 ---
-
-# 1. Vi 모드 활성화
-bindkey -v
-
-# 2. Vi 모드 반응 속도 빠르게 (Esc 누를 때 딜레이 제거)
-export KEYTIMEOUT=1
-
-# 3. [입력 모드]에서도 백스페이스가 잘 작동하게 설정
-bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^H' backward-delete-char
-
-# 4. [입력 모드] & [일반 모드]에서 화살표로 히스토리 검색하기
-# (아까 설치한 zsh-history-substring-search 플러그인 연동)
-
-# [입력 모드]에서 위/아래 화살표
-bindkey -M viins '^[[A' history-substring-search-up
-bindkey -M viins '^[[B' history-substring-search-down
-
-# [일반 모드]에서 k/j 키 (Vim 방식 이동)
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-# 5. [일반 모드]에서 'v' 누르면 현재 명령어를 진짜 Vim 에디터에서 편집 (강추!)
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
-
-# --- Vi Mode 설정 끝 ---
-
+# starship 설정
 eval "$(starship init zsh)"
 
 # User configuration
