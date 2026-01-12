@@ -1,0 +1,97 @@
+# ~/.config/starship.toml
+
+# 1. 명령어 사이의 공백 줄 제거 (취향에 따라 true로 변경 가능)
+add_newline = false
+
+# 2. 프롬프트 순서 (필요한 것만 나열)
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+$gcloud\
+$nodejs\
+$python\
+$rust\
+$golang\
+$line_break\
+$character"""
+
+# 3. 우측 프롬프트 (명령어 실행 시간 등)
+right_format = """$cmd_duration"""
+
+# --- 모듈별 상세 설정 ---
+
+# [OS 아이콘] Arch Linux 로고 띄우기 (Nerd Font 필요)
+[os]
+disabled = false
+style = "bold blue"
+
+[os.symbols]
+Arch = " "
+
+# [디렉토리] 경로가 너무 길면 줄여서 보여줌
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold cyan"
+
+# [Git] 브랜치 및 상태 아이콘
+[git_branch]
+symbol = "🌱 "
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "🐢"
+diverged = "😵"
+up_to_date = "✓"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+
+# [언어별 버전 표시] 프로젝트 폴더에 들어갔을 때만 뜸
+[nodejs]
+symbol = "⬢ "
+[python]
+symbol = "🐍 "
+[rust]
+symbol = "🦀 "
+[golang]
+symbol = "🐹 "
+
+# [Vi Mode 상태 표시 & 프롬프트 화살표] ★ 핵심 ★
+# 아까 .zshrc에 넣은 함수 대신 이 설정이 작동합니다.
+[character]
+success_symbol = "[➜](bold green)"      # 성공 시 (Insert 모드)
+error_symbol = "[➜](bold red)"          # 에러 시
+vimcmd_symbol = "[❮](bold green)"       # Normal 모드 (Vi 명령 대기)
+vimcmd_replace_one_symbol = "[r](bold purple)" # r (한 글자 바꾸기) 모드
+vimcmd_replace_symbol = "[R](bold purple)"     # R (계속 바꾸기) 모드
+vimcmd_visual_symbol = "[V](bold yellow)"      # Visual 모드
+# --- Cloud & Infra 설정 ---
+
+# [Kubernetes] 현재 컨텍스트와 네임스페이스 표시
+[kubernetes]
+disabled = false
+symbol = "☸ "
+style = "bold blue"
+# format: 심볼 + 컨텍스트 이름 + (네임스페이스가 default가 아니면 표시)
+format = '[$symbol$context( \($namespace\))]($style) '
+
+# [Google Cloud] 활성화된 계정과 프로젝트 표시
+[gcloud]
+disabled = false
+symbol = "🇬️ "     # 또는 ☁️
+style = "bold yellow"
+# format: 심볼 + 계정(@도메인) + (프로젝트명)
+format = '[$symbol$account(@$domain)(\($project\))]($style) '
+# 팁: gcloud 설정이 감지될 때만 뜹니다.
+
+# kuber alias
+#[[kubernetes.contexts]]
+#context_pattern = "ster"
+#context_alias = "dev-gke"
